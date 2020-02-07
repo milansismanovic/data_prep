@@ -3,6 +3,7 @@
 ## Binance Raw Data
 the data from Binance looks like this
 order book
+```json
 {
   "lastUpdateId": 1027024,
   "bids": [
@@ -31,9 +32,11 @@ trades
     "isBestMatch": true
   }
 ]
+```
 
-##Binance Normalization
+## Binance Normalization
 features
+```
 time
 bids 100
 asks 100
@@ -48,10 +51,11 @@ future 3s price difference within the stddev range
 
 normalization
 fx pair normalizaion to min,max 1 year +/-10%
-
+```
 
 which fx pairs
 most liquid pairs:
+```
 pair		volume
 BTC/USDT	255
 BCH/USDT	55
@@ -63,9 +67,10 @@ BNB/USDT	25
 EOS/USDT	22
 BTC/NGN		21
 LTC/USDT	18
-
+```
 
 aggtrades data
+```
 [
   {
     "a": 26129,         // Aggregate tradeId
@@ -96,3 +101,4 @@ Kline/Candlestick data
     "17928899.62484339" // Ignore.
   ]
 ]
+```
