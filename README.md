@@ -3,7 +3,7 @@
 ## Binance Raw Data
 the data from Binance looks like this
 order book
-```json
+```
 {
   "lastUpdateId": 1027024,
   "bids": [
