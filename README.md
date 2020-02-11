@@ -1,6 +1,6 @@
 # data_prep
-
-## Binance Raw Data
+## Input
+### Binance Raw Data
 the data from Binance looks like this
 order book
 ```
@@ -33,8 +33,8 @@ trades
   }
 ]
 ```
-
-## Binance Normalization
+## Output
+### Binance Normalization
 features
 ```
 time
