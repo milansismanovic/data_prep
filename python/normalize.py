@@ -8,7 +8,6 @@ input_file_dir = '/home/tensor/binance/devdata/'
 output_file_dir = '/home/tensor/binance/devnormalizedata/'
 
 start_time = time.time()
-
 # target_futures_seconds = 60  # how many seconds in the future of the depth should the target be
 # target_amount_of_trades = 100
 
@@ -25,8 +24,6 @@ output_data = []
 # for i in range(0, 10):
 for i in range(0, len(trades_files) - 1):
     timestamp = ''
-    bids = ''
-    asks = ''
     depthfilename = input_file_dir + depth_files[i]
     with open(depthfilename) as json_file:
         depth = json.load(json_file)
@@ -61,11 +58,10 @@ for i in range(0, len(trades_files) - 1):
 
 # write fused data to csv file
 # np.savetxt(output_file_dir + 'fused.csv', output_data, delimiter=',', fmt='%.3f')
-np.savetxt(output_file_dir + 'fused.csv', output_data, delimiter=',')
+np.savetxt(output_file_dir + 'fused.csv', output_data, delimiter=',', fmt='%s')
 
 # enrich step
 # TODO add prices for 5,10,..,60minutes,4h,12h,24h,7d,30d,1y - do this in a normalize step
 # TODO do normalization operations to bids, asks, trades here
-# TODO calculate target value
 
-print('execution time : ' + (time.time() - start_time))
+print('execution time : %s' % (time.time() - start_time))
