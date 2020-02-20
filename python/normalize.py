@@ -2,9 +2,10 @@ import json
 import numpy as np
 import os
 from envbash import load_envbash
+import re
 
 # run the config variables set script
-CONFIG_FILENAME = '../config'
+CONFIG_FILENAME = 'config'
 if not os.path.isfile('%s' % CONFIG_FILENAME):
     print('config file named \'%s\' not found' % CONFIG_FILENAME)
     exit(10)
@@ -20,6 +21,8 @@ if not os.path.exists(output_file_dir):
     print('output_file_dir does not exist or is not configured: \'%s\'' % output_file_dir)
     exit(10)
 
+currency_pairs = os.environ['pairs'].split(" ")
+
 # target_futures_seconds = 60  # how many seconds in the future of the depth should the target be
 # target_amount_of_trades = 100
 
@@ -30,6 +33,10 @@ all_files.sort()
 # get the trades_files
 trades_files = [x for x in all_files if 'aggtrades' in x]
 depth_files = [x for x in all_files if 'depth' in x]
+
+# TODO fix when dealing with multi currency pairs
+currency_pair = currency_pairs[0]
+output_file_name = output_file_dir + os.path.sep + currency_pair + '.csv'
 
 # read the input files and put the relevant values in a 2d matrix output_data and write it out
 output_data = []
@@ -70,7 +77,6 @@ for i in range(0, len(trades_files) - 1):
     output_data.append(output_data_entry)
 
 # write fused data to csv file
-output_file_name = output_file_dir + os.path.sep + 'fused.csv'
 print('saving file to %s' % output_file_name)
 np.savetxt(output_file_name, output_data, delimiter=',')
 
