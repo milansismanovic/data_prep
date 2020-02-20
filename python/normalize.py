@@ -1,15 +1,8 @@
 import json
 import numpy as np
 import os
-from envbash import load_envbash
-import re
-
-# run the config variables set script
-CONFIG_FILENAME = 'config'
-if not os.path.isfile('%s' % CONFIG_FILENAME):
-    print('config file named \'%s\' not found' % CONFIG_FILENAME)
-    exit(10)
-load_envbash(CONFIG_FILENAME)
+from decimal import *
+import time
 
 input_file_dir = os.environ['datafolder']
 if not os.path.exists(input_file_dir):
@@ -23,6 +16,7 @@ if not os.path.exists(output_file_dir):
 
 currency_pairs = os.environ['pairs'].split(" ")
 
+start_time = time.time()
 # target_futures_seconds = 60  # how many seconds in the future of the depth should the target be
 # target_amount_of_trades = 100
 
@@ -83,4 +77,5 @@ np.savetxt(output_file_name, output_data, delimiter=',')
 # enrich step
 # TODO add prices for 5,10,..,60minutes,4h,12h,24h,7d,30d,1y - do this in a normalize step
 # TODO do normalization operations to bids, asks, trades here
-# TODO calculate target value
+
+print('execution time : %s' % (time.time() - start_time))
